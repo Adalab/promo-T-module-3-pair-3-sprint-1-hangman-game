@@ -1,7 +1,29 @@
 import '../scss/main.scss';
 import '../fonts/KgTenThousandReasons-R1ll.ttf';
+import { useState } from 'react';
+
 
 function App() {
+  const [t, setT] = useState ('');
+  const [o, setO] = useState ('');
+  
+
+  
+  const [letter, setLetter] = useState ('');
+  const handleInput = (ev) => {
+    ev.preventDefault();
+  const inputValue = ev.target.value;
+  
+  
+   if (inputValue === 't'){
+    setLetter(inputValue)
+ console.log(inputValue)
+  }
+  else{ 
+    setLetter ('')
+
+  }
+  }
   return (
     <div className="page">
       <header>
@@ -14,11 +36,11 @@ function App() {
             <ul className="letters">
               <li className="letter">k</li>
               <li className="letter">a</li>
-              <li className="letter"></li>
+              <li className="letter ">{letter}</li>
               <li className="letter">a</li>
               <li className="letter">k</li>
               <li className="letter">r</li>
-              <li className="letter"></li>
+              <li className="letter collapsed">{o}</li>
               <li className="letter">k</li>
               <li className="letter">e</li>
               <li className="letter">r</li>
@@ -43,6 +65,8 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              onInput = {handleInput}
+
             />
           </form>
         </section>
