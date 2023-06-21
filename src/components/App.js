@@ -7,23 +7,21 @@ function App() {
   const [t, setT] = useState ('');
   const [o, setO] = useState ('');
   
-
-  
   const [letter, setLetter] = useState ('');
   const handleInput = (ev) => {
     ev.preventDefault();
   const inputValue = ev.target.value;
   
   
-   if (inputValue === 't'){
+  if (inputValue === 't'){
     setLetter(inputValue)
  console.log(inputValue)
   }
   else{ 
     setLetter ('')
 
-  }
-  }
+  }}
+  
   return (
     <div className="page">
       <header>
