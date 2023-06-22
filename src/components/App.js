@@ -5,17 +5,34 @@ import { useState } from 'react';
 function App() {
   const [numberOfErrors, setNumberOfErrors] = useState('0');
   const [letter, setLetter] = useState('');
+  const [word, setword] = useState('katakroker');
+  
+
+  const renderSolutionLetters = () => {
+    
+    const wordLetters = word.split('');
+    return wordLetters.map((oneletter, index) => {
+      return(
+      <li key={index} className='letter'>{oneletter}</li>
+      )
+      
+    });
+  }
+
 
   const handleClick = (event) => {
     event.preventDefault();
     setNumberOfErrors(parseInt(numberOfErrors) + parseInt(1));
-    console.log(numberOfErrors);
+
+   
+
   };
 
   const handleInputChange = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     const result = event.target.value.replace(/[^a-z]/gi, '');
     setLetter(result);
+    
   };
 
     /*const handleInput = (ev) => {
@@ -41,8 +58,10 @@ function App() {
         <section>
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
+           
             <ul className='letters'>
-              <li className='letter'>k</li>
+            {renderSolutionLetters()}
+              {/*<li className='letter'>k</li>
               <li className='letter'>a</li>
               <li className='letter'>{letter}</li>
               <li className='letter'>a</li>
@@ -51,7 +70,7 @@ function App() {
               <li className='letter'>{letter}</li>
               <li className='letter'>k</li>
               <li className='letter'>e</li>
-              <li className='letter'>r</li>
+  <li className='letter'>r</li>*/}
             </ul>
           </div>
           <div className='error'>
