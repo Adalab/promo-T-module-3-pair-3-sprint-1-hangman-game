@@ -1,27 +1,37 @@
 import '../scss/main.scss';
 import '../fonts/KgTenThousandReasons-R1ll.ttf';
-import { useState } from 'react';
-
+import { useState, setState } from 'react';
 
 function App() {
-  const [t, setT] = useState ('');
-  const [o, setO] = useState ('');
-  
-  const [letter, setLetter] = useState ('');
+  const [numberOfErrors, setNumberOfErrors] = useState('0');
+
+  const [letter, setLetter] = useState('');
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setNumberOfErrors(parseInt(numberOfErrors) + parseInt(1));
+    console.log(numberOfErrors);
+  };
+
+  const handleInputChange = (event) => {
+    if(event.target.value.match("^[a-zA-Z ]*$") != null){
+      this.setState({letter: event.target.value});
+  }
+  }
+
   const handleInput = (ev) => {
     ev.preventDefault();
-  const inputValue = ev.target.value;
-  
-  
-  if (inputValue === 't'){
-    setLetter(inputValue)
- console.log(inputValue)
-  }
-  else{ 
-    setLetter ('')
+    const inputValue = ev.target.value;
 
-  }}
-  
+    if (inputValue === 't') {
+      setLetter(inputValue);
+      console.log(inputValue);
+    } else if (inputValue === 'o') {
+      setLetter(inputValue);
+    } else {
+      setLetter(inputValue);
+    }
+  };
   return (
     <div className="page">
       <header>
@@ -34,11 +44,11 @@ function App() {
             <ul className="letters">
               <li className="letter">k</li>
               <li className="letter">a</li>
-              <li className="letter ">{letter}</li>
+              <li className="letter">{letter}</li>
               <li className="letter">a</li>
               <li className="letter">k</li>
               <li className="letter">r</li>
-              <li className="letter collapsed">{o}</li>
+              <li className="letter">{letter}</li>
               <li className="letter">k</li>
               <li className="letter">e</li>
               <li className="letter">r</li>
@@ -55,7 +65,9 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" htmlFor="last-letter">Escribe una letra:</label>
+            <label className="title" htmlFor="last-letter">
+              Escribe una letra:
+            </label>
             <input
               autocomplete="off"
               className="form__input"
@@ -63,12 +75,15 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
-              onInput = {handleInput}
-
+              value={letter}
+              pattern="[A-Za-z]"
+              onInput={handleInput}
+              onInputChange={handleInputChange}
             />
           </form>
+          <button onClick={handleClick}>Incrementar</button>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
